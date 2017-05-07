@@ -1,6 +1,6 @@
 <p align="center" style="width: 100%"><img width="200" height="200" src="/images/golang.png" /></p>
 
-# Go Virtual Machine Provisioning Scripting Parser Kube (vmklet)
+# Go Virtual Machine Provisioning Scripting Parser (vmklet)
 
 Go-Lang Virtual Machine provisioning parser language. This package allow to define provision machine via ssh, docker-compose, awsclient and so on ...
 
