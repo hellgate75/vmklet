@@ -1,7 +1,5 @@
 package model
 
-import "strings"
-
 type FormatType int
 type FormatString string
 
@@ -26,17 +24,36 @@ var FormatTypeStringList []FormatString = []FormatString{
 	"",
 }
 
-func (Type *FormatType) String() string{
-	if int(Type) < len(FormatTypeStringList) {
-		return  string(FormatTypeStringList[int(Type)])
+func (Type *FormatType) String() string {
+	var index int = Type.Index()
+	if index >= 0 && index < len(FormatTypeStringList) {
+		return string(FormatTypeStringList[index])
 	}
 	return ""
 }
 
-func (String *FormatString) Parse() FormatType{
-	var index int = strings.Index(FormatTypeList, String)
+func (Type *FormatType) Index() int {
+	for i:=0; i<len(FormatTypeList); i++ {
+		if FormatTypeList[i] == *Type {
+			return i
+		}
+	}
+	return  -1
+}
+
+func (String *FormatString) Parse() FormatType {
+	var index int = String.Index()
 	if index >= 0 {
-		return  FormatTypeList[index]
+		return FormatTypeList[index]
 	}
 	return NoFormat
+}
+
+func (Type *FormatString) Index() int {
+	for i:=0; i<len(FormatTypeStringList); i++ {
+		if FormatTypeStringList[i] == *Type {
+			return i
+		}
+	}
+	return  -1
 }

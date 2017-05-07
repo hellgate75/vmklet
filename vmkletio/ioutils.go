@@ -1,10 +1,10 @@
-package vmletio
+package vmkletio
 
 import (
-	"gopkg.in/yaml.v2"
-	"io/ioutil"
 	"encoding/json"
 	"encoding/xml"
+	"gopkg.in/yaml.v2"
+	"io/ioutil"
 )
 
 func GetYAMLFromObj(m interface{}) []byte {
@@ -30,18 +30,18 @@ func GetElemFromYAMLString(data string, out *interface{}) error {
 func GetElemFromYAMLFile(file string, out *interface{}) error {
 	data, err := ioutil.ReadFile(file)
 	if err != nil {
-		return  err
+		return err
 	}
 	return yaml.Unmarshal(data, out)
 }
 
 func GetJSONFromObj(m interface{}, prettify bool) []byte {
-	var bytes []byte  = make([]byte, 0)
+	var bytes []byte = make([]byte, 0)
 	var err error
 	if prettify {
 		bytes, err = json.MarshalIndent(m, "", "  ")
 
-	} else  {
+	} else {
 		bytes, err = json.Marshal(m)
 	}
 	if err != nil {
@@ -52,7 +52,7 @@ func GetJSONFromObj(m interface{}, prettify bool) []byte {
 
 func GetJSONFromElem(m interface{}, prettify bool) ([]byte, error) {
 	if prettify {
-		return  json.MarshalIndent(m, "", "  ")
+		return json.MarshalIndent(m, "", "  ")
 	}
 	return json.Marshal(m)
 }
@@ -68,19 +68,18 @@ func GetElemFromJSONString(data string, out *interface{}) error {
 func GetElemFromJSONFile(file string, out *interface{}) error {
 	data, err := ioutil.ReadFile(file)
 	if err != nil {
-		return  err
+		return err
 	}
 	return json.Unmarshal(data, out)
 }
 
-
 func GetXMLFromObj(m interface{}, prettify bool) []byte {
-	var bytes []byte  = make([]byte, 0)
+	var bytes []byte = make([]byte, 0)
 	var err error
 	if prettify {
 		bytes, err = xml.MarshalIndent(m, "", "  ")
 
-	} else  {
+	} else {
 		bytes, err = xml.Marshal(m)
 	}
 	if err != nil {
@@ -91,7 +90,7 @@ func GetXMLFromObj(m interface{}, prettify bool) []byte {
 
 func GetXMLFromElem(m interface{}, prettify bool) ([]byte, error) {
 	if prettify {
-		return  xml.MarshalIndent(m, "", "  ")
+		return xml.MarshalIndent(m, "", "  ")
 	}
 	return xml.Marshal(m)
 }
@@ -107,7 +106,7 @@ func GetElemFromXMLString(data string, out *interface{}) error {
 func GetElemFromXMLFile(file string, out *interface{}) error {
 	data, err := ioutil.ReadFile(file)
 	if err != nil {
-		return  err
+		return err
 	}
 	return xml.Unmarshal(data, out)
 }
