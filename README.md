@@ -96,8 +96,8 @@ Alternatively you can execute following commands :
 The tool provides an help section, describing commands, sub-commands and has a nested help level for commands details.
 
 The help is available executing : 
-* `vmkube help` General Help
-* `vmkube help [command]` Detailed Command syntax helper
+* `vmklet help` General Help
+* `vmklet help [command]` Detailed Command syntax helper
 
 Parser provides a sample for the expected input format. Import and Export of actions are provided in following file formats:
 * JSON - standard JSON language
