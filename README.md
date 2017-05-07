@@ -1,59 +1,33 @@
 <p align="center" style="width: 100%"><img width="200" height="200" src="/images/golang.png" />&nbsp;<img width="168" height="200" src="/images/docker-machine.png" /></p>
 
-# Go Virtual Machine Kube (vmkube)
+# Go Virtual Machine Provisioning Scripting Parser Kube (vmklet)
 
-Go-Lang Virtual Machine environment manager. This package allow to define projects and build infrastructures on local or remote cloud providers
+Go-Lang Virtual Machine provisioning parser language. This package allow to define provision machine via ssh, docker-compose, awsclient and so on ...
 
 
 ## Prerequisites
 
 * [Go](https://golang.org/dl/) (tested with version 1.8)
-* [Docker](https://www.docker.com/get-docker) and [Docker-Machine](https://docs.docker.com/machine/install-machine/)
-
-One of following :
-* [VMWare Fusion](https://my.vmware.com/en/web/vmware/info/slug/desktop_end_user_computing/vmware_fusion/8_0)
-* [VMWare Workstation Player](https://my.vmware.com/en/web/vmware/free#desktop_end_user_computing/vmware_workstation_player/12_0)
-* [Virtual Box](https://www.virtualbox.org/wiki/Downloads) (VMWare Utilities on mac : `brew install vagrant-vmware-fusion`, on windows/linux: [VDDK65](https://my.vmware.com/group/vmware/get-download?downloadGroup=VDDK65)) 
-* Microsoft [Hyper-V](https://www.manageengine.com/free-hyper-v-configuration/documents.html)
-* Any of the cloud provider [supported by docker](https://docs.docker.com/machine/drivers/)
-
-In order to define machine OSs, you can use any of the [supported ISOs](https://docs.docker.com/machine/drivers/os-base/)
 
 ## Goals
 
-Define a virtual machine remote/local manager based on docker-machine drivers. It defines a smart and simple command-line/web interface to manage environments. 
-It provides features to define project and deployment plans for infrastructures and applications. 
-Domain, Network and Host management level and hierarchy are main concepts in the VMKube philosophy.
-WMKube provides development and deployment environments: You have to define an initial project, you can manager the networks, domains, hosts and a staging phase. 
-When you close the project, you are ready to delete it or, alternatively, to build and run the infrastructure.
+Define a virtual machine remote/local provisioner for OS, designed and optimized for [vmkube](https://github.com/hellgate75/vmkube).
 
 ## What is provided?
 
 Provided features:
 
-* Project definition procedures
+* Scripting language parse
 
-* Project staging/un-staging procedures
+* Scripting language helper
 
-* Project build procedures
+* Scripting language command
 
-* Infrastructure build procedures
+* Multi language translator (Ansible, kubecli, AWS CloudFormation, ....)
 
-* Infrastructure/Project inspection procedures
-
-* Custom Deployment plans with main providers (VMKubelet, [Ansible](http://docs.ansible.com/ansible/index.html), [Helm for Kubernetes](https://github.com/kubernetes/helm), ...)
-
-* Digital Control and multi vendor instances (Machine and Cloud-Machines can be defined)
-
-* Multiple project/infrastructure information export formats
-
-Machine Providers:
-
-See [Docker-Machine Drivers](https://docs.docker.com/machine/drivers/)
 
 To compile and run this project you have to check availability of following software:
 * [Go](https://golang.org/dl/) (tested with version 1.8)
-* [Docker](https://www.docker.com/get-docker) and [Docker-Machine](https://docs.docker.com/machine/install-machine/)
 * Test and Utility GOLang packages ([UUID Package](https://github.com/satori/go.uuid), [Unit Test](https://github.com/stretchr/testify)) and [GO SSH Terminal](http://golang.org/x/crypto/ssh/terminal), [YAML Parser](http://gopkg.in/yaml.v2)
 
 
@@ -72,7 +46,7 @@ Go in you `GOPATH/src` folder and type :
  go get github.com/satori/go.uuid
  go get golang.org/x/crypto/ssh/terminal
  go get gopkg.in/yaml.v2
- git clone https://github.com/hellgate75/vmkube.git
+ git clone https://github.com/hellgate75/vmklet.git
 
 ```
 or simply :
@@ -81,7 +55,7 @@ or simply :
  go get github.com/satori/go.uuid
  go get golang.org/x/crypto/ssh/terminal
  go get gopkg.in/yaml.v2
- go get github.com/hellgate75/vmkube
+ go get github.com/hellgate75/vmklet
 ```
 
 
@@ -114,6 +88,7 @@ Alternatively you can execute following commands :
  * `go test` to run unit and integration test on the project
  * `go run main.go` to execute the project
  * `go build --buildmode exe .` to create an executable command
+ * `go build install` to install executable command
 
 
 ## Execution
@@ -127,26 +102,11 @@ The help is available executing :
 Import / Alter Project Commands provides a sample for the expected imput format. Import and Export of components is provided in following file formats:
 * JSON - standard JSON language
 * XML - Untagged and un-described XML format (Pure XML tag sequence, no XML definition or version is accepted).
+* YAML - standard YAML format.
 
 In this release the command list is composed by following keys :
-* `help` : Show generic commands help
-* `start-infra` : Start an existing Infrastructure
-* `stop-infra` : Stop a Running Infrastructure
-* `restart-infra` : Restart a Running Infrastructure
-* `destroy-infra` : Destroy a specific Infrastructure
-* `backup-infra` : Backup a specific Infrastructure to a backup file
-* `recover-infra` : Recover a specific Infrastructure from a backup file
-* `infra-status` : Require information about a specific Infrastructure
-* `list-all-infra` : Require list of all Infrastructures
-* `list-projects` : Require list of all available projects
-* `project-status` : Require information about a specific projects
-* `define-project` : Creates a new project
-* `alter-project` : Modify existing project, e.g.: open, close project or add, modify, delete items
-* `info-project` : Provides information about project elements definition
-* `delete-project` : Delete existing project
-* `build-project` : Build and existing project and create/modify an infrastructure
-* `import-project` : Import project from existing configuration
-* `export-project` : Export existing project configuration
+
+*NOT* *PROVIDED* *YET*
 
 ## License
 
