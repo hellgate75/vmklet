@@ -1,7 +1,6 @@
 package test
 
 import (
-	"fmt"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"os"
