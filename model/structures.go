@@ -20,9 +20,9 @@ func (Parser *Parser) Save(file string) error {
 	var err error = errors.New("Unknown Parser!!")
 	if Parser.Format == JSONFormat {
 		bytes, err = vmkletio.GetJSONFromElem(Parser.Structure, Parser.Prettify)
-	} else if Parser.Format == XMLFormat {
-		bytes, err = vmkletio.GetYAMLFromElem(Parser.Structure)
 	} else if Parser.Format == YAMLFormat {
+		bytes, err = vmkletio.GetYAMLFromElem(Parser.Structure)
+	} else if Parser.Format == XMLFormat {
 		bytes, err = vmkletio.GetXMLFromElem(Parser.Structure, Parser.Prettify)
 	}
 	if err == nil {
@@ -39,9 +39,9 @@ func (Parser *Parser) Load(file string) error {
 	var err error = errors.New("Unknown Parser!!")
 	if Parser.Format == JSONFormat {
 		err = vmkletio.GetElemFromJSONFile(file, &Parser.Structure)
-	} else if Parser.Format == XMLFormat {
-		err = vmkletio.GetElemFromYAMLFile(file, &Parser.Structure)
 	} else if Parser.Format == YAMLFormat {
+		err = vmkletio.GetElemFromYAMLFile(file, &Parser.Structure)
+	} else if Parser.Format == XMLFormat {
 		err = vmkletio.GetElemFromXMLFile(file, &Parser.Structure)
 	}
 	if err == nil {

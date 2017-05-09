@@ -1,4 +1,4 @@
-package actions
+package contrib
 
 import "vmklet/model"
 
