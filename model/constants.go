@@ -33,12 +33,12 @@ func (Type *FormatType) String() string {
 }
 
 func (Type *FormatType) Index() int {
-	for i:=0; i<len(FormatTypeList); i++ {
+	for i := 0; i < len(FormatTypeList); i++ {
 		if FormatTypeList[i] == *Type {
 			return i
 		}
 	}
-	return  -1
+	return -1
 }
 
 func (String *FormatString) Parse() FormatType {
@@ -50,12 +50,12 @@ func (String *FormatString) Parse() FormatType {
 }
 
 func (Type *FormatString) Index() int {
-	for i:=0; i<len(FormatTypeStringList); i++ {
+	for i := 0; i < len(FormatTypeStringList); i++ {
 		if FormatTypeStringList[i] == *Type {
 			return i
 		}
 	}
-	return  -1
+	return -1
 }
 
 type StreamType int
@@ -85,12 +85,12 @@ func (Type *StreamType) String() string {
 }
 
 func (Type *StreamType) Index() int {
-	for i:=0; i<len(StreamTypeList); i++ {
+	for i := 0; i < len(StreamTypeList); i++ {
 		if StreamTypeList[i] == *Type {
 			return i
 		}
 	}
-	return  -1
+	return -1
 }
 
 func (String *StreamString) Parse() StreamType {
@@ -102,10 +102,10 @@ func (String *StreamString) Parse() StreamType {
 }
 
 func (Type *StreamString) Index() int {
-	for i:=0; i<len(StreamTypeStringList); i++ {
+	for i := 0; i < len(StreamTypeStringList); i++ {
 		if StreamTypeStringList[i] == *Type {
 			return i
 		}
 	}
-	return  -1
+	return -1
 }

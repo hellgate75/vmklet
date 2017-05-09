@@ -13,7 +13,7 @@ import (
 /*
 * SSH Command stream
 * SSH commands executor implements model.CommandStream
-*/
+ */
 
 type SSHCommandStream struct {
 	User         string
@@ -24,13 +24,12 @@ type SSHCommandStream struct {
 }
 
 func (ssh *SSHCommandStream) Command(cmd model.Command) error {
-	return  nil
+	return nil
 }
 
 func (ssh *SSHCommandStream) Procedure(cmd ...model.Command) error {
-	return  nil
+	return nil
 }
-
 
 func (ssh *SSHCommandStream) executeOne(cmd ...string) *exec.Cmd {
 	var args []string = make([]string, 0)

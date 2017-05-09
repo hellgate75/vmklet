@@ -38,4 +38,3 @@ func SShGoLangInstall(user string, ip string, port int, identityFilePath string)
 	//}
 	//fmt.Fprintln(os.Stdout, fmt.Sprintf("SSH Connection to %s:%d with user %s closed!!", ip, port, user))
 }
-

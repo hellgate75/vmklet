@@ -9,7 +9,7 @@ import (
 type Parser struct {
 	Format    FormatType
 	Structure interface{}
-	Prettify 	bool
+	Prettify  bool
 }
 
 func (Parser *Parser) Save(file string) error {
