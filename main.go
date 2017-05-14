@@ -1,1 +1,9 @@
-package vmklet
+package main
+
+func init() {
+
+}
+
+func main() {
+
+}

@@ -6,11 +6,12 @@ type Storage interface {
 }
 
 type CommandStream interface {
-	Command(cmd Command) error
-	Procedure(cmd ...Command) error
+	Command(cmd string) error
+	Procedure(cmd ...string) error
+	Parse(arguments ...string) (*CommandStream, error)
 }
 
 type Command interface {
-	Execute(arguments ...string) error
-	Parse(commands ...string) error
+	Execute(stream CommandStream, commands ...string) error
+	Parse(arguments ...string) (*Command, error)
 }

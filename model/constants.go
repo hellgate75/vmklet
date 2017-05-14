@@ -18,9 +18,9 @@ var FormatTypeList []FormatType = []FormatType{
 }
 
 var FormatTypeStringList []FormatString = []FormatString{
-	"JSON",
-	"XML",
-	"YAML",
+	"json",
+	"xml",
+	"yaml",
 	"",
 }
 
@@ -62,12 +62,12 @@ type StreamType int
 type StreamString string
 
 const (
-	SSHStram StreamType = iota
+	SSHStream StreamType = iota
 	NoStream
 )
 
 var StreamTypeList []StreamType = []StreamType{
-	SSHStram,
+	SSHStream,
 	NoStream,
 }
 
@@ -104,6 +104,58 @@ func (String *StreamString) Parse() StreamType {
 func (Type *StreamString) Index() int {
 	for i := 0; i < len(StreamTypeStringList); i++ {
 		if StreamTypeStringList[i] == *Type {
+			return i
+		}
+	}
+	return -1
+}
+
+type CommandType int
+type CommandString string
+
+const (
+	ShellCommand CommandType = iota
+	NoCommand
+)
+var CommandTypeList []CommandType = []CommandType{
+	ShellCommand,
+	NoCommand,
+}
+
+
+var CommandTypeStringList []CommandString = []CommandString{
+	"SHELL",
+	"",
+}
+
+func (Type *CommandType) String() string {
+	var index int = Type.Index()
+	if index >= 0 && index < len(CommandTypeStringList) {
+		return string(CommandTypeStringList[index])
+	}
+	return ""
+}
+
+func (Type *CommandType) Index() int {
+	for i := 0; i < len(CommandTypeList); i++ {
+		if CommandTypeList[i] == *Type {
+			return i
+		}
+	}
+	return -1
+}
+
+func (String *CommandString) Parse() CommandType {
+	var index int = String.Index()
+	if index >= 0 {
+		return CommandTypeList[index]
+	}
+	return NoStream
+}
+
+func (Type *CommandString) Index() int {
+	for i := 0; i < len(CommandTypeStringList); i++ {
+		if CommandTypeStringList[i] == *Type {
 			return i
 		}
 	}
