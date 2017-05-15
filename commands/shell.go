@@ -2,13 +2,12 @@ package commands
 
 import (
 	"vmklet/model"
-	"strings"
 	"errors"
 	"fmt"
 )
 
 /*
-* Shell Command Stream
+* Shell Command
 * Used to execute shell commands on remote/local host machine
  */
 
