@@ -115,16 +115,19 @@ type CommandString string
 
 const (
 	ShellCommand CommandType = iota
+	URLCommand
 	NoCommand
 )
 var CommandTypeList []CommandType = []CommandType{
 	ShellCommand,
+	URLCommand,
 	NoCommand,
 }
 
 
 var CommandTypeStringList []CommandString = []CommandString{
 	"SHELL",
+	"URL",
 	"",
 }
 

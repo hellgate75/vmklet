@@ -3,13 +3,13 @@ package streams
 import (
 	"bufio"
 	"fmt"
-	"os"
 	"os/exec"
 	"strings"
 	"time"
 	"vmklet/model"
 	"errors"
 	"strconv"
+	"vmklet/utils"
 )
 
 /*
@@ -41,27 +41,28 @@ func (ssh *SSHCommandStream) Parse(arguments ...string) (*model.CommandStream, e
 	var ipAddress string = ""
 	var port int = 0
 	var arguments []string = make([]string, 0)
+	var parsedCommand string = model.SSHStream.String() + " " + strings.Join(arguments, " ")
 	if len(arguments) > 1 {
 		for index,argument := range arguments {
 			if index % 2 == 0 {
 				//First token
 				var key string = argument
 				if index >= len(arguments-1) {
-					return  nil, errors.New(errors.New(fmt.Sprintf("SSH Command has uncompleted argument '%s'!!", key )))
+					return  nil, errors.New(errors.New(fmt.Sprintf("SSH Command '%s' has uncompleted argument '%s'!!", parsedCommand, key )))
 				}
 				var value string = arguments[index+1]
-				if strings.Index(key, "user") >= 0 {
+				if strings.Index(utils.CorrectInput(key), "user") >= 0 {
 					user = strings.TrimSpace(value)
-				} else if strings.Index(key, "identity") >= 0 {
+				} else if strings.Index(utils.CorrectInput(key), "identity") >= 0 {
 					key = strings.TrimSpace(value)
-				} else if strings.Index(key, "ipaddress") >= 0 {
+				} else if strings.Index(utils.CorrectInput(key), "ipaddress") >= 0 {
 					ipAddress = strings.TrimSpace(value)
-				} else if strings.Index(key, "port") >= 0 {
+				} else if strings.Index(utils.CorrectInput(key), "port") >= 0 {
 					port, err = strconv.Atoi(strings.TrimSpace(value))
 					if err != nil {
 						return  nil, err
 					}
-				} else if strings.Index(key, "arguments") >= 0 {
+				} else if strings.Index(utils.CorrectInput(key), "arguments") >= 0 {
 					var args []string = make([]string, 0)
 					for i:=index+1; i < len(arguments); i++ {
 						args = append(args, strings.TrimSpace(arguments[i]))
@@ -72,7 +73,7 @@ func (ssh *SSHCommandStream) Parse(arguments ...string) (*model.CommandStream, e
 			}
 		}
 		if user == "" || ipAddress == "" {
-			return nil, errors.New(errors.New("SSH Command user and ip address are mandatory fields!!"))
+			return nil, errors.New(errors.New(fmt.Sprintf("SSH Command '%s' user and ip address are mandatory fields!!", parsedCommand)))
 		}
 		return  &SSHCommandStream{
 			Type: model.SSHStream,
