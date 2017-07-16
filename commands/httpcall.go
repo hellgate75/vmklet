@@ -2,10 +2,10 @@ package commands
 
 import (
 	"fmt"
-	"vmklet/model"
+	"github.com/hellgate75/vmklet/model"
 	"errors"
 	"strings"
-	"vmklet/utils"
+	"github.com/hellgate75/vmklet/utils"
 )
 
 /*
