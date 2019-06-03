@@ -8,13 +8,12 @@ go:
 before_install:
   - go get github.com/mattn/goveralls
   - go get golang.org/x/tools/cmd/cover
-  - echo $(pwd)
-  - echo ls -latr
-  - sh $(pwd)/install-dependancies 
+  - chmod 777 $(pwd)/install-dependencies 
+  - sh $(pwd)/install-dependencies 
+  - dep ensure -update
   
 script:
   #  - go test -v -cover
-  - dep ensure -update
 #  - go test -v -cover -gcflags "-N -l" . ...
 #  - go install -v -gcflags "-N -l" . ...
 #  - $HOME/gopath/bin/goveralls -v -service=travis-ci
