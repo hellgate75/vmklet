@@ -5,6 +5,8 @@ go:
   - '1.11'
   - '1.12'
 
+secure: "AtkpNIBOS1RxVD2newbFp2afivU9ZryXwUmpc9TyAILH3GdBr8lmokmpbIGvmIiqnKRG6jvXOOMVOM95NeMDKdxkX4JIE7pPDZUDMQIXAm+oEPiEMhZO8iawND0buTmN9TRr4ngzjhe5WFsoqkwwsGALSFZWtEGwRx7TOOcCW4R1Vg8NAJqMWHeOZUR5scMK26+7JJO/dflrYynVHT3zpybJVhuZXEMJ3NMAnJvtGqdVXT/KMmk37Y6C+o/lCJ7OSD+iKHi5YcO1Dq4xZdsx8B417JIgQde+eqoSgVmp9Ih63tppg4u6rKWwYg6CRcMfsfgr7P+W6lzvTnYDXe1XIASCo0cr2jVjvAXXtI7t+QkngpI5Srj17keatmcPsHLEf6KqZXk9+HtgRUOn3yFUor+nakfvRetWDTor/twWwwsp4ir/9OIc4XaItOp75/K2EpT5dlBdKMEQkvEGvgdUtbT5f8MmwwoS8GqtKvH9AfSaNTWO0O7sJi2NPa/Ae/O/fouJlgWX/Ol5ZWod/F4gRwd+G4Fb5gwVCVxRYfC0plUaZp07jX3M6YUwlKODoS7EOblMQ1I/jSh6Z3f2N+5PTHIaaYx36SIZpTEEBzHi7SNPccwidHIrmK6cdlPl4pmmC6NdrPbu17qhpmCr/JWpVjo1RulpUlzzCoCv471bIWw="
+
 before_install:
   - go get github.com/mattn/goveralls
   - go get golang.org/x/tools/cmd/cover
@@ -17,4 +19,6 @@ script:
 #  - go test -v -cover -gcflags "-N -l" . ...
 #  - go install -v -gcflags "-N -l" . ...
 #  - $HOME/gopath/bin/goveralls -v -service=travis-ci
-  - $HOME/gopath/bin/goveralls -v -insecure -race -show
+#  - $HOME/gopath/bin/goveralls -v -insecure -race -show
+  - go test -v -covermode=count -coverprofile=coverage.out
+  - $HOME/gopath/bin/goveralls -v -insecure -race -show -coverprofile=coverage.out -service=travis-pro -repotoken $COVERALLS_TOKEN
