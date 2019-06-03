@@ -8,7 +8,7 @@ go:
 before_install:
   - go get github.com/mattn/goveralls
   - go get golang.org/x/tools/cmd/cover
-  - go get github.com/stretchr/testify github.com/pmezard/go-difflib github.com/davecgh/go-spew golang.org/x/text/encoding golang.org/x/text/encoding/charmap golang.org/x/text/encoding/htmlindex golang.org/x/text/transform golang.org/x/crypto/ssh/terminal golang.org/x/sys/windows golang.org/x/sys/unix
+  - go get github.com/stretchr/testify github.com/pmezard/go-difflib github.com/davecgh/go-spew golang.org/x/text/encoding golang.org/x/text/encoding/charmap golang.org/x/text/encoding/htmlindex golang.org/x/text/transform golang.org/x/crypto/ssh/terminal golang.org/x/sys/windows
   - go get golang.org/x/lint github.com/golang/lint github.com/golang/lint/golint
 
 script:
