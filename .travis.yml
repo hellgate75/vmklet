@@ -14,10 +14,6 @@ before_install:
   - go get golang.org/x/text/encoding/htmlindex
   - go get golang.org/x/text/transform 
   - go get golang.org/x/crypto/ssh/terminal
-  - go get golang.org/x/sys/windows
-  - go get golang.org/x/lint
-  - go get github.com/golang/lint
-  - go get github.com/golang/lint/golint
 
 script:
   #  - go test -v -cover
