@@ -6,15 +6,13 @@ go:
   - '1.12'
 
 before_install:
-  - go get github.com/mattn/goveralls
-  - go get golang.org/x/tools/cmd/cover
-  - go get github.com/stretchr/testify 
-  - go get golang.org/x/text/encoding
-  - go get golang.org/x/text/encoding/charmap 
-  - go get golang.org/x/text/encoding/htmlindex
-  - go get golang.org/x/text/transform 
-  - go get golang.org/x/crypto/ssh/terminal
-
+#  - go get github.com/mattn/goveralls
+#  - go get golang.org/x/tools/cmd/cover
+  - ./install-dependancies 
+  
 script:
   #  - go test -v -cover
-  - $HOME/gopath/bin/goveralls -v -service=travis-ci
+  - dep ensure -update
+  - go test -v -cover -gcflags "-N -l" . ...
+  - go install -v -gcflags "-N -l" . ...
+ # - $HOME/gopath/bin/goveralls -v -service=travis-ci
