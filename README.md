@@ -1,6 +1,8 @@
 <p align="center" style="width: 100%"><img width="200" height="200" src="/images/golang.png" /></p>
 
-# Go Virtual Machine Provisioning Scripting Parser (vmklet)  &nbdp;[![Build Status](https://travis-ci.org/hellgate75/vmklet.svg?branch=master)](https://travis-ci.org/hellgate75/vmklet)
+# Go Virtual Machine Provisioning Scripting Parser (vmklet) 
+
+<p align="center"><img src="https://travis-ci.org/hellgate75/vmklet.svg?branch=master" alt="trevis-ci" width="98" height="20" />&nbsp;<a href="https://travis-ci.org/hellgate75/vmklet">Check last build on Travis-CI</a></p><br/>
 
 Go-Lang Virtual Machine provisioning parser language. This package allow to define provision machine via ssh, docker-compose, awsclient and so on ...
 
