@@ -2,14 +2,14 @@ package streams
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
+	"github.com/hellgate75/vmklet/model"
+	"github.com/hellgate75/vmklet/utils"
 	"os/exec"
+	"strconv"
 	"strings"
 	"time"
-	"vmklet/model"
-	"errors"
-	"strconv"
-	"vmklet/utils"
 )
 
 /*
@@ -18,37 +18,39 @@ import (
  */
 
 type SSHCommandStream struct {
-	Type					model.StreamType
-	User         	string
-	IP           	string
-	Port         	int
-	IdentityFile 	string
-	Arguments    	[]string
+	Type         model.StreamType
+	User         string
+	IP           string
+	Port         int
+	IdentityFile string
+	Arguments    []string
 }
 
 func (ssh *SSHCommandStream) Command(cmd string) error {
-	return  ssh.executeOne(cmd)
+	_, err := ssh.executeOne(cmd).Output()
+	return err
 }
 
 func (ssh *SSHCommandStream) Procedure(cmd ...string) error {
-	return ssh.executeMany(cmd)
+	_, err := ssh.executeMany(cmd...)
+	return err
 }
 
-func (ssh *SSHCommandStream) Parse(arguments ...string) (*model.CommandStream, error) {
+func (ssh *SSHCommandStream) Parse(arguments ...string) (model.CommandStream, error) {
 	var err error
 	var user string = ""
 	var key string = ""
 	var ipAddress string = ""
 	var port int = 0
-	var arguments []string = make([]string, 0)
-	var parsedCommand string = model.SSHStream.String() + " " + strings.Join(arguments, " ")
+	var outArgs []string = make([]string, 0)
+	var parsedCommand string = fmt.Sprintf("%v", model.SSHStream) + " " + strings.Join(arguments, " ")
 	if len(arguments) > 1 {
-		for index,argument := range arguments {
-			if index % 2 == 0 {
+		for index, argument := range arguments {
+			if index%2 == 0 {
 				//First token
 				var key string = argument
-				if index >= len(arguments-1) {
-					return  nil, errors.New(errors.New(fmt.Sprintf("SSH Command '%s' has uncompleted argument '%s'!!", parsedCommand, key )))
+				if index >= len(arguments)-1 {
+					return nil, errors.New(fmt.Sprintf("SSH Command '%s' has uncompleted argument '%s'!!", parsedCommand, key))
 				}
 				var value string = arguments[index+1]
 				if strings.Index(utils.CorrectInput(key), "user") >= 0 {
@@ -60,31 +62,31 @@ func (ssh *SSHCommandStream) Parse(arguments ...string) (*model.CommandStream, e
 				} else if strings.Index(utils.CorrectInput(key), "port") >= 0 {
 					port, err = strconv.Atoi(strings.TrimSpace(value))
 					if err != nil {
-						return  nil, err
+						return nil, err
 					}
 				} else if strings.Index(utils.CorrectInput(key), "arguments") >= 0 {
 					var args []string = make([]string, 0)
-					for i:=index+1; i < len(arguments); i++ {
+					for i := index + 1; i < len(arguments); i++ {
 						args = append(args, strings.TrimSpace(arguments[i]))
 					}
-					arguments = args
+					outArgs = args
 					break
 				}
 			}
 		}
 		if user == "" || ipAddress == "" {
-			return nil, errors.New(errors.New(fmt.Sprintf("SSH Command '%s' user and ip address are mandatory fields!!", parsedCommand)))
+			return nil, errors.New(fmt.Sprintf("SSH Command '%s' user and ip address are mandatory fields!!", parsedCommand))
 		}
-		return  &SSHCommandStream{
-			Type: model.SSHStream,
-			User: user,
-			IP: ipAddress,
-			Port: port,
+		return &SSHCommandStream{
+			Type:         model.SSHStream,
+			User:         user,
+			IP:           ipAddress,
+			Port:         port,
 			IdentityFile: key,
-			Arguments: arguments,
+			Arguments:    outArgs,
 		}, nil
 	}
-	return nil, errors.New(errors.New(fmt.Sprintf("SSH Command has inappropriate number of arguments '%d'!!", len(arguments) )))
+	return nil, errors.New(fmt.Sprintf("SSH Command has inappropriate number of arguments '%d'!!", len(arguments)))
 }
 
 func (ssh *SSHCommandStream) executeOne(cmd ...string) *exec.Cmd {

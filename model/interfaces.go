@@ -8,10 +8,10 @@ type Storage interface {
 type CommandStream interface {
 	Command(cmd string) error
 	Procedure(cmd ...string) error
-	Parse(arguments ...string) (*CommandStream, error)
+	Parse(arguments ...string) (CommandStream, error)
 }
 
 type Command interface {
 	Execute(stream CommandStream, commands ...string) error
-	Parse(arguments ...string) (*Command, error)
+	Parse(arguments ...string) (Command, error)
 }

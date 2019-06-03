@@ -28,4 +28,4 @@ out
 **/*.ser
 vmklet
 vendor
-.netrc
+.project

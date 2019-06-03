@@ -2,8 +2,8 @@ package model
 
 import (
 	"errors"
+	"github.com/hellgate75/vmklet/vmkletio"
 	"io/ioutil"
-	"vmklet/vmkletio"
 )
 
 type Parser struct {

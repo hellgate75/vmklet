@@ -1,14 +1,14 @@
 package contrib
 
 import (
-	"vmklet/model"
-	"vmklet/streams"
 	"errors"
 	"fmt"
+	"github.com/hellgate75/vmklet/model"
+	"github.com/hellgate75/vmklet/streams"
 )
 
-func NewStream(streamType model.StreamType) (*model.CommandStream, error) {
-	switch streamType  {
+func NewStream(streamType model.StreamType) (model.CommandStream, error) {
+	switch streamType {
 	case model.SSHStream:
 		return &streams.SSHCommandStream{Type: streamType}, nil
 	}

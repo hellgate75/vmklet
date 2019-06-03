@@ -1,13 +1,13 @@
 package test
 
 import (
+	"github.com/hellgate75/vmklet/contrib"
+	"github.com/hellgate75/vmklet/model"
+	"github.com/hellgate75/vmklet/test/utils"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"os"
 	"testing"
-	"vmklet/contrib"
-	"vmklet/model"
-	"vmklet/test/utils"
 )
 
 func TestNewStateParserJSON(t *testing.T) {

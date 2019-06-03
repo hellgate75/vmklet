@@ -118,12 +118,12 @@ const (
 	URLCommand
 	NoCommand
 )
+
 var CommandTypeList []CommandType = []CommandType{
 	ShellCommand,
 	URLCommand,
 	NoCommand,
 }
-
 
 var CommandTypeStringList []CommandString = []CommandString{
 	"SHELL",
@@ -153,7 +153,7 @@ func (String *CommandString) Parse() CommandType {
 	if index >= 0 {
 		return CommandTypeList[index]
 	}
-	return NoStream
+	return NoCommand
 }
 
 func (Type *CommandString) Index() int {
