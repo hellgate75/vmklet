@@ -1,6 +1,5 @@
 language: go
 go:
-  - '1.9'
   - '1.10'
   - '1.11'
   - '1.12'
@@ -14,14 +13,6 @@ before_install:
   - sh $(pwd)/install-dependencies 
   - dep ensure -update
 
-#service_name: travis-pro
-#repo_token: $COVERALLS_TOKEN
-  
 script:
-  #  - go test -v -cover
-#  - go test -v -cover -gcflags "-N -l" . ...
-#  - go install -v -gcflags "-N -l" . ...
-#  - $HOME/gopath/bin/goveralls -v -service=travis-ci
-#  - $HOME/gopath/bin/goveralls -v -insecure -race -show
   - go test -v -covermode=count -coverprofile=coverage.out
   - $HOME/gopath/bin/goveralls -v -insecure -race -show -coverprofile=coverage.out -service=travis-ci -repotoken "$COVERALLS_TOKEN"
